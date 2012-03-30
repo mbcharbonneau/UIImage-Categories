@@ -5,11 +5,6 @@
 
 #import "UIImage+Alpha.h"
 
-// Private helper methods
-@interface UIImage ()
-- (CGImageRef)newBorderMask:(NSUInteger)borderSize size:(CGSize)size;
-@end
-
 @implementation UIImage (Alpha)
 
 // Returns true if the image has an alpha layer
