@@ -48,7 +48,7 @@
     UIImage *croppedImage = [resizedImage croppedImage:cropRect];
     
     UIImage *transparentBorderImage = borderSize ? [croppedImage transparentBorderImage:borderSize] : croppedImage;
-
+    
     return [transparentBorderImage roundedCornerImage:cornerRadius borderSize:borderSize];
 }
 
@@ -115,14 +115,16 @@
     CGRect transposedRect = CGRectMake(0, 0, newRect.size.height, newRect.size.width);
     CGImageRef imageRef = self.CGImage;
     
-    // Build a context that's the same dimensions as the new size
-    CGContextRef bitmap = CGBitmapContextCreate(NULL,
-                                                newRect.size.width,
-                                                newRect.size.height,
-                                                CGImageGetBitsPerComponent(imageRef),
-                                                0,
-                                                CGImageGetColorSpace(imageRef),
-                                                CGImageGetBitmapInfo(imageRef));
+    // Fix for a colorspace / transparency issue that affects some types of 
+    // images. See here: http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/comment-page-2/#comment-39951
+        
+    CGContextRef bitmap =CGBitmapContextCreate( NULL,
+                                               newRect.size.width,
+                                               newRect.size.height,
+                                               8,
+                                               0,
+                                               CGImageGetColorSpace( imageRef ),
+                                               kCGImageAlphaNoneSkipLast );
     
     // Rotate and/or flip the image if required by its orientation
     CGContextConcatCTM(bitmap, transform);
@@ -166,6 +168,8 @@
             transform = CGAffineTransformTranslate(transform, 0, newSize.height);
             transform = CGAffineTransformRotate(transform, -M_PI_2);
             break;
+        default:
+            break;
     }
     
     switch (self.imageOrientation) {
@@ -179,6 +183,8 @@
         case UIImageOrientationRightMirrored:  // EXIF = 7
             transform = CGAffineTransformTranslate(transform, newSize.height, 0);
             transform = CGAffineTransformScale(transform, -1, 1);
+            break;
+        default:
             break;
     }
     
