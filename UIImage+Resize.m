@@ -120,13 +120,15 @@
     // images. See here: http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/comment-page-2/#comment-39951
         
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef bitmap =CGBitmapContextCreate( NULL,
-                                               newRect.size.width,
-                                               newRect.size.height,
-                                               8,
-                                               0,
-                                               colorSpace,
-                                               kCGImageAlphaPremultipliedLast );
+    CGContextRef bitmap = CGBitmapContextCreate(
+                                                NULL,
+                                                newRect.size.width,
+                                                newRect.size.height,
+                                                8, /* bits per channel */
+                                                (newRect.size.width * 4), /* 4 channels per pixel * numPixels/row */
+                                                CGColorSpaceCreateDeviceRGB(),
+                                                kCGImageAlphaPremultipliedLast
+                                                );
     CGColorSpaceRelease(colorSpace);
 	
     // Rotate and/or flip the image if required by its orientation
