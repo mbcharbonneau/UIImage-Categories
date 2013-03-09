@@ -6,6 +6,10 @@
 // Extends the UIImage class to support resizing/cropping
 @interface UIImage (Resize)
 - (UIImage *)croppedImage:(CGRect)bounds;
+- (UIImage *)thumbnailSize:(CGSize)thumbnailSize
+          transparentBorder:(NSUInteger)borderSize
+               cornerRadius:(NSUInteger)cornerRadius
+       interpolationQuality:(CGInterpolationQuality)quality;
 - (UIImage *)thumbnailImage:(NSInteger)thumbnailSize
           transparentBorder:(NSUInteger)borderSize
                cornerRadius:(NSUInteger)cornerRadius
