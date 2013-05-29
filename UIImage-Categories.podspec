@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/mbcharbonneau/UIImage-Categories"
   s.license      = { type: 'MIT', file: 'LICENSE' }
   s.author       = { "Marc Charbonneau" => "marc@mbcharbonneau.com" }
-  s.source       = { :git => "https://github.com/dlamacchia/UIImage-Categories.git", :tag => "v#{s.version}" }
+  s.source       = { :git => "https://github.com/mbcharbonneau/UIImage-Categories.git", :tag => "v#{s.version}" }
   s.platform     = :ios, '5.0'
   s.ios.deployment_target = '5.0'
   s.source_files = 'UIImage*.{h,m}'
