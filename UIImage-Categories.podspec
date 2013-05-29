@@ -10,10 +10,10 @@ Pod::Spec.new do |s|
   s.summary      = "Image resizing and cropping utilities (originally by Trevor Harmon)."
   s.description  = <<-DESC
                     For more information, see:
-                    http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/
+                    http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/ .
                     DESC
   s.homepage     = "https://github.com/mbcharbonneau/UIImage-Categories"
-  s.license      = 'MIT'
+  s.license      = { type: 'MIT', file: 'LICENSE' }
   s.author       = { "Marc Charbonneau" => "marc@mbcharbonneau.com" }
   s.source       = { :git => "https://github.com/dlamacchia/UIImage-Categories.git", :tag => "v#{s.version}" }
   s.platform     = :ios, '5.0'
