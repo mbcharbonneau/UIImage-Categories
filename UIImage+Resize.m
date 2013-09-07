@@ -119,7 +119,7 @@
                                                 newRect.size.height,
                                                 8, /* bits per channel */
                                                 (newRect.size.width * 4), /* 4 channels per pixel * numPixels/row */
-                                                CGColorSpaceCreateDeviceRGB(),
+                                                colorSpace,
                                                 kCGImageAlphaPremultipliedLast
                                                 );
     CGColorSpaceRelease(colorSpace);
