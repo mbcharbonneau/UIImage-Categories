@@ -132,8 +132,8 @@
                                                 NULL,
                                                 newRect.size.width,
                                                 newRect.size.height,
-                                                bitsPerComponent
-                                                bytesPerRow
+                                                bitsPerComponent,
+                                                bytesPerRow,
                                                 colorSpace,
                                                 bitmapInfo
                                                 );
