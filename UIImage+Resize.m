@@ -86,7 +86,7 @@
             break;
             
         default:
-            [NSException raise:NSInvalidArgumentException format:@"Unsupported content mode: %d", contentMode];
+            [NSException raise:NSInvalidArgumentException format:@"Unsupported content mode: %d", (int)contentMode];
     }
     
     CGSize newSize = CGSizeMake(self.size.width * ratio, self.size.height * ratio);
@@ -120,7 +120,7 @@
                                                 8, /* bits per channel */
                                                 (newRect.size.width * 4), /* 4 channels per pixel * numPixels/row */
                                                 colorSpace,
-                                                kCGImageAlphaPremultipliedLast
+                                                (CGBitmapInfo)kCGImageAlphaPremultipliedLast
                                                 );
     CGColorSpaceRelease(colorSpace);
 	
@@ -149,6 +149,11 @@
     CGAffineTransform transform = CGAffineTransformIdentity;
     
     switch (self.imageOrientation) {
+        case UIImageOrientationUp:
+        case UIImageOrientationUpMirrored:
+            //  Nothing to transform.
+            break;
+            
         case UIImageOrientationDown:           // EXIF = 3
         case UIImageOrientationDownMirrored:   // EXIF = 4
             transform = CGAffineTransformTranslate(transform, newSize.width, newSize.height);
@@ -171,6 +176,13 @@
     }
     
     switch (self.imageOrientation) {
+        case UIImageOrientationUp:
+        case UIImageOrientationLeft:
+        case UIImageOrientationDown:
+        case UIImageOrientationRight:
+            //  Nothing to transform.
+            break;
+            
         case UIImageOrientationUpMirrored:     // EXIF = 2
         case UIImageOrientationDownMirrored:   // EXIF = 4
             transform = CGAffineTransformTranslate(transform, newSize.width, 0);
