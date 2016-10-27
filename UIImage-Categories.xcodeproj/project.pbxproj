@@ -13,7 +13,7 @@
 		7C9A14F11D1733CB0006B90D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9A14EB1D1733CB0006B90D /* UIImage+Resize.m */; };
 		7C9A14F21D1733CB0006B90D /* UIImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C9A14EC1D1733CB0006B90D /* UIImage+RoundedCorner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C9A14F31D1733CB0006B90D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9A14ED1D1733CB0006B90D /* UIImage+RoundedCorner.m */; };
-		7C9A14F51D17346D0006B90D /* UIImageCategories.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C9A14F41D17346D0006B90D /* UIImageCategories.h */; };
+		7C9A14F51D17346D0006B90D /* UIImageCategories.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C9A14F41D17346D0006B90D /* UIImageCategories.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C9A14F71D1736580006B90D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9A14F61D1736580006B90D /* UIKit.framework */; };
 		7C9A14FA1D1736750006B90D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9A14F91D1736750006B90D /* Foundation.framework */; };
 /* End PBXBuildFile section */
