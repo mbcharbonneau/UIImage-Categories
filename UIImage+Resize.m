@@ -91,7 +91,18 @@
     
     CGSize newSize = CGSizeMake(self.size.width * ratio, self.size.height * ratio);
     
-    return [self resizedImage:newSize interpolationQuality:quality];
+    UIImage *resizedImg = [self resizedImage:newSize interpolationQuality:quality];
+    // Fix crop if the image got larger.
+    if (UIViewContentModeScaleAspectFill == contentMode &&
+        (newSize.height > bounds.height || newSize.width > bounds.width)) {
+        return [resizedImg
+                croppedImage:CGRectMake((newSize.width - bounds.width) / 2,
+                                        (newSize.height - bounds.height) / 2,
+                                        bounds.width,
+                                        bounds.height)];
+    }
+    return resizedImg;
+
 }
 
 #pragma mark -
