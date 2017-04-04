@@ -68,6 +68,28 @@
     return [self resizedImage:newSize transform:transform drawTransposed:drawTransposed interpolationQuality:quality];
 }
 
+// Returns a possiblly rescaled copy of the image, taking into account its orientation,
+// of the same aspect ratio as the input, with either the width and height set to a
+// maximum dimension, depending on the aspect ratio of the input image.
+//
+// The image may be unchanged if neither the width or height are greater than the
+// given maximumWidthOrHeight argument
+- (UIImage *)resizedImageWithMaximumDimension:(CGFloat)maximumWidthOrHeight
+                         interpolationQuality:(CGInterpolationQuality)quality
+{
+    float ratio = self.size.width / self.size.height;
+    
+    CGSize newSize = self.size;
+
+    if ((ratio >= 1.f) && (self.size.width > maximumWidthOrHeight))
+        newSize = CGSizeMake(maximumWidthOrHeight, maximumWidthOrHeight / ratio);
+    else if ((ratio < 1.f) && (self.size.height > maximumWidthOrHeight))
+        newSize = CGSizeMake(maximumWidthOrHeight * ratio, maximumWidthOrHeight);
+    
+    return [self resizedImage:newSize interpolationQuality:quality];
+}
+
+
 // Resizes the image according to the given content mode, taking into account the image's orientation
 - (UIImage *)resizedImageWithContentMode:(UIViewContentMode)contentMode
                                   bounds:(CGSize)bounds
